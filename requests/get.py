@@ -1,4 +1,7 @@
 import requests
+import os
+
+API_KEY = os.getenv("WEATHER_API_KEY")
 
 # fetching a user profile so we just pass the url with the user id and get response
 r = requests.get("https://www.linkedin.com/in/shamoon-ahmed-496a6231b/")
@@ -6,14 +9,14 @@ r = requests.get("https://www.linkedin.com/in/shamoon-ahmed-496a6231b/")
 print("Response: ", r.text)
 print("Status Code: ", r.status_code)
 
-# fetching the weather, we pass some parameters that are visible in the url
+# fetching the weather, we pass some parameters. Those parameters are are visible in the url
 # the requests library automatically encodes the query like %20 or + in place of a space ( )
 
 city = input("Enter City: ").capitalize()
 
 params = {
     "q" : city,
-    "appid" : "85f6422f798147ed37a61ecda17d2bb5"
+    "appid" : API_KEY
 }
 
 url = f"http://api.openweathermap.org/geo/1.0/direct"
@@ -27,7 +30,7 @@ print("Response -> ", "City: ", data[0]["name"], "| Country: ", data[0]["country
 parameters = {
     "lat" : lat,
     "lon" : lon,
-    "appid" : "85f6422f798147ed37a61ecda17d2bb5"
+    "appid" : API_KEY
 }
 
 weather_url = "https://api.openweathermap.org/data/2.5/weather"
